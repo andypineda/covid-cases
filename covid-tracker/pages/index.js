@@ -110,7 +110,7 @@ export default function Home({cases,deaths}) {
             <div className="searchBarContainer">
               <div className="field">
                 <div className="control">
-                  <input className="input is-large" type="search" placeholder="ex. 17109" autoFocus onInput={PassInput()} />
+                  <input className="input is-large" type="search" placeholder="ex. Ohio" autoFocus onInput={PassInput()} />
                 </div>
               </div>
             </div>

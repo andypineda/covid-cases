@@ -1,0 +1,32 @@
+/* Navbar */
+.appName{
+  padding-right: 1em;
+}
+
+
+.totalCount{
+  margin-left: 5px;
+}
+
+
+
+
+/*  Home Page */
+.centered{
+  margin:0 auto;
+}
+
+.introMessage{
+  max-width: 400px;
+}
+
+
+/* Searchbar */
+.searchBarContainer{
+  margin-top: 4em;
+}
+
+.filter{
+  margin-top: 1em;
+}
+

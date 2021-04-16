@@ -6,7 +6,7 @@ export default function TotalCount({cases,deaths}){
     
 
     return(
-        <>
+        <> 
             <nav className="navbar">
                 <div className="container">
                     <div id="navMenu" className="navbar-menu">

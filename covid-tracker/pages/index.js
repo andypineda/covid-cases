@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import TotalCount from '../components/NationalTracker'
 import FilterResults from '../lib/filter'
-
+import NProgress from 'nprogress'; //nprogress module
+import 'nprogress/nprogress.css'; //styles of nprogress
 import 'bulma/css/bulma.css'
-import Link from 'next/link'
-
 
 
 
@@ -36,7 +35,8 @@ export default function Home({cases,deaths}) {
   
       // Selects tde input field from tde search bar 
       let SearchInput = document.querySelector('input');
-      
+     
+
       //Gets tde live time input 
       SearchInput.oninput = handleInput;
       
@@ -50,8 +50,12 @@ export default function Home({cases,deaths}) {
         //Do a search for current input if tde value is not empty
         if(value.length > 3){
 
+          NProgress.start() // Start load bar 
+
+
           // Make a request to get tde filtered results from tde API 
           const results = await FilterResults(value)
+          console.log("FILTERED RESULTS ARE:",results)
 
           // Assign each search result to it's assigned state 
           setCounty(results['County'])
@@ -59,7 +63,8 @@ export default function Home({cases,deaths}) {
           setZip(results['Zip'])
 
 
-          console.log(results['Zip'])
+          
+          NProgress.done() // Close load bar
 
         } else {
           setCounty(undefined)
@@ -68,6 +73,9 @@ export default function Home({cases,deaths}) {
         }
   
       }
+
+     
+
     })
   }
   
@@ -92,17 +100,26 @@ export default function Home({cases,deaths}) {
 
   return (
     <>
+      <Head>
+        <title>COVID-19 Tracker</title>
+
+
+        {/*  Load Bar  */}
+        <script src='nprogress.js'></script>
+        <link rel='stylesheet' href='nprogress.css'/>
+      </Head>
+
+
       <TotalCount cases={cases} deaths={deaths} />
 
       <section className="hero is-link is-fullheight-witd-navbar">
-        
         <div className="hero-body centered" style={{height:"1000px"}}>
           
           <div className="box">
 
             <div className="has-text-centered introMessage">
               <p className="title has-text-black has-text-centered">
-                Search COVID-19 cases by City, State or ZipCode 
+                Search COVID-19 cases by City or State
               </p>
             </div>
 
@@ -243,7 +260,7 @@ export async function getStaticProps(context) {
   // Fetch the national case and death count from the API
   const getNationalStats = await fetch("http://127.0.0.1:5000/api/nationalstats")
   const stats = await getNationalStats.json()
-
+  console.log(stats)
 
   // Assign cases and deaths to its own variable 
   const cases = stats['TotalCases']

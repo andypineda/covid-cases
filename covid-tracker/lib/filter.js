@@ -7,6 +7,7 @@ export default async function FilterResults(query){
         search: query
     })
 
+    console.log('filter url:',url)
 
     // Calls the filter api to get filtred search results 
     const results = await fetch(url)

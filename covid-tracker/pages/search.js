@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react'
 import TotalCount from '../components/NationalTracker'
 import FilterResults from '../lib/filter'
 import 'bulma/css/bulma.css'
-
-//  For parsing string to html 
-const DomParser = require('dom-parser');
-const parser = new DomParser();
-
-
+import getConfig from 'next/config';
 
 
 
@@ -22,6 +17,14 @@ export default function SearchResults({table,cases,deaths}){
 
     return(
         <>
+        <Head>
+            <title>COVID-19 Tracker</title>
+
+            {/*  Load Bar  */}
+            <script src='nprogress.js'></script>
+            <link rel='stylesheet' href='nprogress.css'/>
+        </Head>
+
         <TotalCount cases={cases} deaths={deaths} />
 
         <section className="hero is-link is-fullheight-witd-navbar">
@@ -30,13 +33,13 @@ export default function SearchResults({table,cases,deaths}){
                 <div id="results box" style={{width:'800px'}}>
 
 
-                    <table class="table is-striped is-fullwidth is-hoverable">
+                    <table class="table is-striped is-fullwidth is-hoverable is-bordered">
                         <thead>
                             <tr>
                                 {columns.map(name =>{
                                     if(name != "date"){
                                         return(
-                                            <th>{name}</th>
+                                            <th className="capitalize">{name}</th>
                                         )
                                     }
                                 })}
@@ -106,10 +109,12 @@ export async function getServerSideProps({context,query}) {
     const getData = await fetch(url)
     const table = await getData.json()
 
+    console.log('Pandas Table',table)
+
     // Fetch the national case and death count from the API
     const getNationalStats = await fetch("http://127.0.0.1:5000/api/nationalstats")
     const stats = await getNationalStats.json()
-  
+    
   
     // Assign cases and deaths to its own variable 
     const cases = stats['TotalCases']

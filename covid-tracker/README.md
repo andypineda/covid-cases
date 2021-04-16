@@ -24,7 +24,7 @@ Font-End
 -  [Bulma CSS](https://bulma.io/) - open source CSS framework based on Flexbox and built with Sass
 
 ## API
-<p>The application API's were created using  [Flask](https://flask.palletsprojects.com/en/1.1.x/), a python web framework. </p>
+The application API's were created using  [Flask](https://flask.palletsprojects.com/en/1.1.x/) a python web framework. 
 
 ### Available Routes 
 <strong>/api/search</strong>

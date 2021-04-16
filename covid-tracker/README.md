@@ -9,7 +9,7 @@ A simple web application that allows you to search Coronavirus (Covid-19) cases 
 
 
 <p align="center">
- <img align="center" alt="start up" src="demo/search.gif" />
+ <img align="center" alt="start up" src="../demo/search.gif" />
 </p>
 
 ## Stack

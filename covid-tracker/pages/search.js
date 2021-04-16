@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import TotalCount from '../components/NationalTracker'
-import FilterResults from '../lib/filter'
 import 'bulma/css/bulma.css'
-import getConfig from 'next/config';
-
 
 
 export default function SearchResults({table,cases,deaths}){
@@ -23,6 +20,10 @@ export default function SearchResults({table,cases,deaths}){
             {/*  Load Bar  */}
             <script src='nprogress.js'></script>
             <link rel='stylesheet' href='nprogress.css'/>
+
+            {/* Table CSS and Fonts*/}
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+            
         </Head>
 
         <TotalCount cases={cases} deaths={deaths} />

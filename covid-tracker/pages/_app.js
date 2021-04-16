@@ -1,7 +1,8 @@
-import '../styles/globals.css'
+import React from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
+import '../styles/globals.css'
 
 //Binding events. 
 Router.events.on('routeChangeStart', () => NProgress.start());
